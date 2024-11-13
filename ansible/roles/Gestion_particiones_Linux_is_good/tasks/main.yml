@@ -1,0 +1,61 @@
+---
+# tasks file for Gestion_particiones_Linux_is_good
+
+  - name: "Gestion_particiones_Linux_is_good"
+    debug:
+      msg: "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+
+  - name: "Crear puntos de montaje"
+    become: yes
+    file:
+      path: "{{ item }}"
+      state: directory  
+      mode: '0775'
+    loop: "{{ puntos_de_montaje }}"
+
+  - name: "create partition" 
+    become: yes
+    parted:
+      device: "{{ item.device }}"
+      number: "{{ item.number }}"
+      flags: "{{ item.flags }}"
+      state: present  
+      part_end: "{{ item.part_end }}"
+    loop: "{{ lista_particiones }}"
+
+  - name: "Install lvm2 dependency"
+    become: yes
+    package:
+      name: lvm2
+      state: present
+
+  - name: "task for creating volume group"
+    become: yes
+    lvg:
+      vg: "{{ item.vg }}"
+      pvs: "{{ item.pvs }}"
+      pesize: "{{ item.pesize }}"
+    loop: "{{ lista_grupos_de_volumenes }}"
+
+  - name: "task for creating logical volume"
+    become: yes
+    lvol:
+      vg: "{{ item.vg_name }}"
+      lv: "{{ item.lv_name }}"
+      size: "{{ item.lv_size }}"
+      force: yes
+    loop: "{{ lista_volumenes_logicos }}"    
+
+  - name: "format the filesystem"
+    filesystem:
+      fstype: "{{ item.fstype }}"
+      dev: "{{ item.lv_dev }}"
+    loop: "{{ lista_de_formatos }}" 
+
+  - name: "mount the lv on"
+    mount:
+      path: "{{ item.path }}"
+      src: "{{ item.src }}"
+      fstype: "{{ item.fstype }}"
+      state: mounted     
+    loop: "{{ lista_de_montaje }}"

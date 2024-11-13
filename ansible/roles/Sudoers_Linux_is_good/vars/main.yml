@@ -1,0 +1,6 @@
+---
+# vars file for Sudoers_Linux_is_good
+
+
+GROUP_ADMIN: "Linux_is_good"
+

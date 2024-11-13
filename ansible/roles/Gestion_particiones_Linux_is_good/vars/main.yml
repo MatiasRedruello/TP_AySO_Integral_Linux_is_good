@@ -1,0 +1,68 @@
+---
+# vars file for Gestion_particiones_Linux_is_good
+
+
+  puntos_de_montaje:
+    - /var/lib/docker/
+    - /work/
+  lista_particiones:
+    - device: /dev/sdc
+      number: 1
+      flags: [ lvm ]  
+      part_end: 1.5GB  # Fin de la partición 1 (1.5GB)
+    - device: /dev/sde
+      number: 1
+      flags: [ lvm ]  
+      part_end: 1.5GB  # Fin de la partición 2 (1GB adicional)
+    #- device: /dev/sdc
+    #number: 1
+      #flags: [ swap ]
+      #part_end: 3GB  # Fin de la partición swap (1GB adicional)
+    #- device: /dev/sdc
+      #number: 1
+      #flags: [ swap ]
+      #part_end: 1GB  # Fin de la partición swap (1GB adicional)
+
+  lista_grupos_de_volumenes:
+    - vg: vg_datos  # Nombre del grupo de volúmenes
+      pvs: /dev/sdc1  # Las particiones físicas que forman el VG
+      pesize: 4MB  # Tamaño de la extensión física (PE) 
+    - vg: vg_datos  
+      pvs: /dev/sde1  
+      pesize: 4MB  
+    #- vg: vg_temp  
+      #pvs: /dev/sdc3
+      #pesize: 4MB
+
+
+  lista_volumenes_logicos:
+    - vg_name: vg_datos
+      lv_name: lv_docker
+      lv_size: 1g
+    - vg_name: vg_datos
+      lv_name: lv_workareas
+      lv_size: 800MG
+    #- vg_name: vg_temp
+      #lv_name: lv_swap
+      #lv_size: 2g  # Para la partición swap en vg_temp
+
+
+
+  lista_de_formatos:
+    - fstype: xfs
+      lv_dev: /dev/vg_datos/lv_docker
+    - fstype: xfs
+      lv_dev: /dev/vg_datos/lv_workareas
+    #- fstype: xfs
+      #lv_dev: /dev/vg_temp/lv_swap
+
+  lista_de_montaje:
+    - path: /var/lib/docker
+      src: /dev/vg_datos/lv_docker
+      fstype: xfs
+    - path: /work
+      src: /dev/vg_datos/lv_workareas
+      fstype: xfs
+    #- path: /swap
+      #src: /dev/vg_temp/lv_swap
+      #fstype: swap  # Para el volumen de swap

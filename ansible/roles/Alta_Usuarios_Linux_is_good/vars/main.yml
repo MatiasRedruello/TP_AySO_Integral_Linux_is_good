@@ -1,0 +1,17 @@
+---
+# vars file for Alta_Usuarios_Linux_is_good
+#$y$j9T$f7V.J8o8/5JXqaI3xUKKQ0$oND2iaEkOI22AcHc9kfKwylXqBi.VixFO/cPGuxMD..
+
+# vars file for Alta_Usuarios_Linux_is_good
+
+LISTA_USUARIOS:
+  - { USERNAME: "R1_Matias", PRIMARY_GROUP: "G_R1", SECONDARY_GROUPS: "Linux_is_good" }
+  - { USERNAME: "R2_Arquitectura", PRIMARY_GROUP: "G_R2", SECONDARY_GROUPS: "Linux_is_good" }
+  - { USERNAME: "R3_Automatizacion_1", PRIMARY_GROUP: "G_R3", SECONDARY_GROUPS: "Linux_is_good" }
+  - { USERNAME: "R4_Automatizacion_2", PRIMARY_GROUP: "G_R4", SECONDARY_GROUPS: "Linux_is_good" }
+  - { USERNAME: "R5_Microservicios", PRIMARY_GROUP: "G_R5", SECONDARY_GROUPS: "Linux_is_good" }
+  - { USERNAME: "R6_Testing", PRIMARY_GROUP: "G_R6", SECONDARY_GROUPS: "Linux_is_good" }
+
+# Clave de usuario encriptada (usando la misma clave que vagrant)
+VAGRANT_PASSWORD_HASH: "$y$j9T$f7V.J8o8/5JXqaI3xUKKQ0$oND2iaEkOI22AcHc9kfKwylXqBi.VixFO/cPGuxMD.."
+

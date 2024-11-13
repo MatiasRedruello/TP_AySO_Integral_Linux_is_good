@@ -1,0 +1,47 @@
+---
+- hosts: 
+#  - all
+  - testing
+    #  - produccion
+
+  # Variables Globales
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - include_role:
+        name: Gestion_particiones_Linux_is_good
+    
+    - include_role:
+        name: TP_INI
+    
+    - include_role:
+        name: Alta_Usuarios_Linux_is_good
+
+    - include_role:
+        name: Instala-tools_Linux_is_good
+    
+    - include_role:
+        name: Sudoers_Linux_is_good
+    
+    - name: "Gestion_particiones_Linux_is_good"
+      debug:
+        msg: "Despues de la ejecucion del rol Gestion_particiones_Linux_is_good"
+
+    - name: "TP_INI"
+      debug:
+        msg: "Despues de la ejecucion del rol TP_INI"
+
+    - name: "Alta_Usuarios_Linux_is_good"
+      debug:
+        msg: "Despues de la ejecucion del rol Alta_Usuarios_Linux_is_good"
+
+    - name: "Instala-tools_Linux_is_good"
+      debug:
+        msg: "Despues de la ejecucion del rol Instala-tools_Linux_is_good"
+
+    - name: "Sudoers_Linux_is_good"
+      debug:
+        msg: "Despues de la ejecucion del rol Sudoers_Linux_is_good"
+
+

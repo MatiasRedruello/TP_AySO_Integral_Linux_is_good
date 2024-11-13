@@ -1,0 +1,8 @@
+---
+# vars file for Instala-tools_Linux_is_goodd
+
+  LIST_TOOLS:
+    - htop
+    - tmux
+    - speedtest-cli
+

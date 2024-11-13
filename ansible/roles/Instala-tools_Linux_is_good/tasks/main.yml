@@ -1,0 +1,16 @@
+---
+# tasks file for Instala-tools_Linux_is_good
+
+  - name: "Rol: Instala-tools_Linux_is_good"
+    debug:
+      msg: "Inicio de tareas dentro del Rol Linux_is_good"
+
+  - name: "Instala herramientas"
+    become: yes
+    package:
+      name:  "{{ item }}"
+      state: present
+    with_items: "{{ LIST_TOOLS }}"
+    tags:
+      - instalar-tools
+    

@@ -1,0 +1,37 @@
+---
+# tasks file for Alta_Usuarios_Linux_is_good
+
+
+
+  - name: "Rol: Alta_Usuarios - Grupo: Linux_is_good"
+    debug:
+      msg: "Inicio de tareas dentro del Rol: Alta_Usuarios"
+
+  # Crear Grupos Principales
+  - name: "Creo grupos principales"
+    become: yes
+    ansible.builtin.group:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - G_R1
+      - G_R2
+      - G_R3
+      - G_R4
+      - G_R5
+      - G_R6
+
+  # Alta y/o Actualización de Usuarios
+  - name: "Alta y/o Actualización del usuario"
+    become: yes
+    ansible.builtin.user:
+      name: "{{ item.USERNAME }}"
+      password: "{{ VAGRANT_PASSWORD_HASH }}"
+      group: "{{ item.PRIMARY_GROUP }}"
+      groups: "{{ item.SECONDARY_GROUPS }}"
+      state: present
+      append: yes
+    loop: "{{ LISTA_USUARIOS }}"
+    tags:
+      - Alta-Usuarios
+
