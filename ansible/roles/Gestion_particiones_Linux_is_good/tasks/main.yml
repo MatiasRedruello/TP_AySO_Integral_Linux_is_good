@@ -20,6 +20,7 @@
       number: "{{ item.number }}"
       flags: "{{ item.flags }}"
       state: present  
+      part_start: "{{ item.part_start }}"
       part_end: "{{ item.part_end }}"
     loop: "{{ lista_particiones }}"
 

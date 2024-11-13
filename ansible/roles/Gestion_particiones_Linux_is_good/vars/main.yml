@@ -8,12 +8,14 @@
   lista_particiones:
     - device: /dev/sdc
       number: 1
-      flags: [ lvm ]  
+      flags: [ lvm ]
+      part_start: 0GB
       part_end: 1.5GB  # Fin de la partición 1 (1.5GB)
-    - device: /dev/sde
+    - device: /dev/sdc
       number: 1
-      flags: [ lvm ]  
-      part_end: 1.5GB  # Fin de la partición 2 (1GB adicional)
+      flags: [ lvm ]
+      part_start:1.5GB  
+      part_end: 2.5GB  # Fin de la partición 2 (1GB adicional)
     #- device: /dev/sdc
     #number: 1
       #flags: [ swap ]
@@ -28,7 +30,7 @@
       pvs: /dev/sdc1  # Las particiones físicas que forman el VG
       pesize: 4MB  # Tamaño de la extensión física (PE) 
     - vg: vg_datos  
-      pvs: /dev/sde1  
+      pvs: /dev/sdc2  
       pesize: 4MB  
     #- vg: vg_temp  
       #pvs: /dev/sdc3
