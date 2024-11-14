@@ -10,12 +10,12 @@
       number: 1
       flags: [ lvm ]
       part_start: 0GB
-      part_end: 1.5GB  # Fin de la partición 1 (1.5GB)
-    - device: /dev/sdc
+      part_end: 3GB  # Fin de la partición 1 (1.5GB)
+    - device: /dev/sdd
       number: 1
       flags: [ lvm ]
-      part_start:1.5GB  
-      part_end: 2.5GB  # Fin de la partición 2 (1GB adicional)
+      part_start: 200MG  
+      part_end: 3GB  # Fin de la partición 2 (1GB adicional)
     #- device: /dev/sdc
     #number: 1
       #flags: [ swap ]
@@ -40,10 +40,10 @@
   lista_volumenes_logicos:
     - vg_name: vg_datos
       lv_name: lv_docker
-      lv_size: 1g
+      lv_size: 100%FREE
     - vg_name: vg_datos
       lv_name: lv_workareas
-      lv_size: 800MG
+      lv_size: 100%FREE
     #- vg_name: vg_temp
       #lv_name: lv_swap
       #lv_size: 2g  # Para la partición swap en vg_temp
