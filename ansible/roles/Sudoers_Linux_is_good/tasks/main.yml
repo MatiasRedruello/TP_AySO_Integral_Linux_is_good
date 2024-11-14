@@ -1,10 +1,11 @@
 ---
-# tasks file for Sudoers_Linux_is_good
-  - name: "add NOPASSWD in sudoers for group {{ GROUP_ADMIN }}"
+# tasks file for Sudoers_Linux_is_goodi
+  - name: "add NOPASSWD in sudoers for group Linux_is_good"
     become: yes
     lineinfile:
-      path: /etc/sudoers.d/desa
+      path: /etc/sudoers.d/Linux_is_good
       state: present
+      create: yes
       line: '%{{ GROUP_ADMIN }} ALL=(ALL) NOPASSWD: ALL'
-      validate: 'visudo -cf %s'
+      
 

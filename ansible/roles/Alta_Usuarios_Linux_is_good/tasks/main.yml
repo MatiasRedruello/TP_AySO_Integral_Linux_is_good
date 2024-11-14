@@ -20,6 +20,7 @@
       - G_R4
       - G_R5
       - G_R6
+      - Linux_is_good
 
   # Alta y/o Actualización de Usuarios
   - name: "Alta y/o Actualización del usuario"

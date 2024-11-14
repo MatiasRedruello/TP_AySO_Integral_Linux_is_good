@@ -1652,3 +1652,239 @@ Or equivalently:
 2024-11-14 03:04:36,006 p=10060 u=vagrant n=ansible | failed: [192.168.56.4] (item={'vg_name': 'vg_datos', 'lv_name': 'lv_workareas', 'lv_size': '100%FREE'}) => {"ansible_loop_var": "item", "changed": false, "item": {"lv_name": "lv_workareas", "lv_size": "100%FREE", "vg_name": "vg_datos"}, "msg": "Sorry, no shrinking of lv_workareas to 0 permitted."}
 2024-11-14 03:04:36,009 p=10060 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
 2024-11-14 03:04:36,010 p=10060 u=vagrant n=ansible | 192.168.56.4               : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 03:23:57,528 p=9487 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 03:23:57,552 p=9487 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 03:24:01,764 p=9487 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:24:01,784 p=9487 u=vagrant n=ansible | TASK [include_role : Gestion_particiones_Linux_is_good] ****************************************************************************************************************************
+2024-11-14 03:24:01,968 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Gestion_particiones_Linux_is_good] *******************************************************************************************************
+2024-11-14 03:24:01,998 p=9487 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+}
+2024-11-14 03:24:02,012 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Crear puntos de montaje] *****************************************************************************************************************
+2024-11-14 03:24:02,843 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=/var/lib/docker/)
+2024-11-14 03:24:03,417 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=/work/)
+2024-11-14 03:24:03,437 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : create partition] ************************************************************************************************************************
+2024-11-14 03:24:05,071 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'device': '/dev/sdc', 'number': 1, 'flags': ['lvm'], 'part_start': '100MB', 'part_end': '10GB'})
+2024-11-14 03:24:05,091 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Install lvm2 dependency] *****************************************************************************************************************
+2024-11-14 03:24:08,108 p=9487 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:24:08,124 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating volume group] **********************************************************************************************************
+2024-11-14 03:24:09,493 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg': 'vg_datos', 'pvs': '/dev/sdc1', 'pesize': '4MB'})
+2024-11-14 03:24:09,508 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating logical volume] ********************************************************************************************************
+2024-11-14 03:24:10,670 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg_name': 'vg_datos', 'lv_name': 'lv_docker', 'lv_size': '50%FREE'})
+2024-11-14 03:24:11,467 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg_name': 'vg_datos', 'lv_name': 'lv_workareas', 'lv_size': '100%FREE'})
+2024-11-14 03:24:11,480 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : format the filesystem] *******************************************************************************************************************
+2024-11-14 03:24:12,507 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'fstype': 'xfs', 'lv_dev': '/dev/vg_datos/lv_docker'})
+2024-11-14 03:24:13,195 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'fstype': 'xfs', 'lv_dev': '/dev/vg_datos/lv_workareas'})
+2024-11-14 03:24:13,209 p=9487 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : mount the lv on] *************************************************************************************************************************
+2024-11-14 03:24:14,790 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'path': '/var/lib/docker', 'src': '/dev/vg_datos/lv_docker', 'fstype': 'xfs'})
+2024-11-14 03:24:15,379 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'path': '/work', 'src': '/dev/vg_datos/lv_workareas', 'fstype': 'xfs'})
+2024-11-14 03:24:15,395 p=9487 u=vagrant n=ansible | TASK [include_role : TP_INI] *******************************************************************************************************************************************************
+2024-11-14 03:24:15,480 p=9487 u=vagrant n=ansible | TASK [TP_INI : Rol: TP_INI - Grupo: {{ Linux_is_good }}] ***************************************************************************************************************************
+2024-11-14 03:24:15,517 p=9487 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: TP_INI"
+}
+2024-11-14 03:24:15,537 p=9487 u=vagrant n=ansible | TASK [TP_INI : Crear directorios en /tmp/Grupo/] ***********************************************************************************************************************************
+2024-11-14 03:24:16,156 p=9487 u=vagrant n=ansible | changed: [192.168.56.4]
+2024-11-14 03:24:16,184 p=9487 u=vagrant n=ansible | TASK [TP_INI : Agrego archivo desde template] **************************************************************************************************************************************
+2024-11-14 03:24:17,700 p=9487 u=vagrant n=ansible | changed: [192.168.56.4]
+2024-11-14 03:24:17,720 p=9487 u=vagrant n=ansible | TASK [include_role : Alta_Usuarios_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 03:24:17,904 p=9487 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Rol: Alta_Usuarios - Grupo: Linux_is_good] *****************************************************************************************************
+2024-11-14 03:24:17,948 p=9487 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Alta_Usuarios"
+}
+2024-11-14 03:24:17,965 p=9487 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Creo grupos principales] ***********************************************************************************************************************
+2024-11-14 03:24:18,694 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R1)
+2024-11-14 03:24:19,210 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R2)
+2024-11-14 03:24:19,747 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R3)
+2024-11-14 03:24:20,274 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R4)
+2024-11-14 03:24:20,803 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R5)
+2024-11-14 03:24:21,340 p=9487 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R6)
+2024-11-14 03:24:21,354 p=9487 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Alta y/o Actualización del usuario] ************************************************************************************************************
+2024-11-14 03:24:22,387 p=9487 u=vagrant n=ansible | failed: [192.168.56.4] (item={'USERNAME': 'R1_Matias', 'PRIMARY_GROUP': 'G_R1', 'SECONDARY_GROUPS': 'Linux_is_good'}) => {"ansible_loop_var": "item", "changed": false, "item": {"PRIMARY_GROUP": "G_R1", "SECONDARY_GROUPS": "Linux_is_good", "USERNAME": "R1_Matias"}, "msg": "Group Linux_is_good does not exist"}
+2024-11-14 03:24:22,946 p=9487 u=vagrant n=ansible | failed: [192.168.56.4] (item={'USERNAME': 'R2_Arquitectura', 'PRIMARY_GROUP': 'G_R2', 'SECONDARY_GROUPS': 'Linux_is_good'}) => {"ansible_loop_var": "item", "changed": false, "item": {"PRIMARY_GROUP": "G_R2", "SECONDARY_GROUPS": "Linux_is_good", "USERNAME": "R2_Arquitectura"}, "msg": "Group Linux_is_good does not exist"}
+2024-11-14 03:24:23,545 p=9487 u=vagrant n=ansible | failed: [192.168.56.4] (item={'USERNAME': 'R3_Automatizacion_1', 'PRIMARY_GROUP': 'G_R3', 'SECONDARY_GROUPS': 'Linux_is_good'}) => {"ansible_loop_var": "item", "changed": false, "item": {"PRIMARY_GROUP": "G_R3", "SECONDARY_GROUPS": "Linux_is_good", "USERNAME": "R3_Automatizacion_1"}, "msg": "Group Linux_is_good does not exist"}
+2024-11-14 03:24:24,105 p=9487 u=vagrant n=ansible | failed: [192.168.56.4] (item={'USERNAME': 'R4_Automatizacion_2', 'PRIMARY_GROUP': 'G_R4', 'SECONDARY_GROUPS': 'Linux_is_good'}) => {"ansible_loop_var": "item", "changed": false, "item": {"PRIMARY_GROUP": "G_R4", "SECONDARY_GROUPS": "Linux_is_good", "USERNAME": "R4_Automatizacion_2"}, "msg": "Group Linux_is_good does not exist"}
+2024-11-14 03:24:24,636 p=9487 u=vagrant n=ansible | failed: [192.168.56.4] (item={'USERNAME': 'R5_Microservicios', 'PRIMARY_GROUP': 'G_R5', 'SECONDARY_GROUPS': 'Linux_is_good'}) => {"ansible_loop_var": "item", "changed": false, "item": {"PRIMARY_GROUP": "G_R5", "SECONDARY_GROUPS": "Linux_is_good", "USERNAME": "R5_Microservicios"}, "msg": "Group Linux_is_good does not exist"}
+2024-11-14 03:24:25,160 p=9487 u=vagrant n=ansible | failed: [192.168.56.4] (item={'USERNAME': 'R6_Testing', 'PRIMARY_GROUP': 'G_R6', 'SECONDARY_GROUPS': 'Linux_is_good'}) => {"ansible_loop_var": "item", "changed": false, "item": {"PRIMARY_GROUP": "G_R6", "SECONDARY_GROUPS": "Linux_is_good", "USERNAME": "R6_Testing"}, "msg": "Group Linux_is_good does not exist"}
+2024-11-14 03:24:25,170 p=9487 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 03:24:25,172 p=9487 u=vagrant n=ansible | 192.168.56.4               : ok=14   changed=9    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 03:30:23,489 p=10630 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 03:30:23,505 p=10630 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 03:30:26,268 p=10630 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:30:26,286 p=10630 u=vagrant n=ansible | TASK [include_role : Gestion_particiones_Linux_is_good] ****************************************************************************************************************************
+2024-11-14 03:30:26,361 p=10630 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Gestion_particiones_Linux_is_good] *******************************************************************************************************
+2024-11-14 03:30:26,387 p=10630 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+}
+2024-11-14 03:30:26,402 p=10630 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Crear puntos de montaje] *****************************************************************************************************************
+2024-11-14 03:30:27,150 p=10630 u=vagrant n=ansible | changed: [192.168.56.4] => (item=/var/lib/docker/)
+2024-11-14 03:30:27,603 p=10630 u=vagrant n=ansible | changed: [192.168.56.4] => (item=/work/)
+2024-11-14 03:30:27,623 p=10630 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : create partition] ************************************************************************************************************************
+2024-11-14 03:30:28,642 p=10630 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'device': '/dev/sdc', 'number': 1, 'flags': ['lvm'], 'part_start': '100MB', 'part_end': '10GB'})
+2024-11-14 03:30:28,656 p=10630 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Install lvm2 dependency] *****************************************************************************************************************
+2024-11-14 03:30:31,257 p=10630 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:30:31,270 p=10630 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating volume group] **********************************************************************************************************
+2024-11-14 03:30:31,996 p=10630 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'vg': 'vg_datos', 'pvs': '/dev/sdc1', 'pesize': '4MB'})
+2024-11-14 03:30:32,009 p=10630 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating logical volume] ********************************************************************************************************
+2024-11-14 03:30:32,765 p=10630 u=vagrant n=ansible | failed: [192.168.56.4] (item={'vg_name': 'vg_datos', 'lv_name': 'lv_docker', 'lv_size': '50%FREE'}) => {"ansible_loop_var": "item", "changed": false, "item": {"lv_name": "lv_docker", "lv_size": "50%FREE", "vg_name": "vg_datos"}, "msg": "Sorry, no shrinking of lv_docker to 0 permitted."}
+2024-11-14 03:30:33,345 p=10630 u=vagrant n=ansible | failed: [192.168.56.4] (item={'vg_name': 'vg_datos', 'lv_name': 'lv_workareas', 'lv_size': '100%FREE'}) => {"ansible_loop_var": "item", "changed": false, "item": {"lv_name": "lv_workareas", "lv_size": "100%FREE", "vg_name": "vg_datos"}, "msg": "Sorry, no shrinking of lv_workareas to 0 permitted."}
+2024-11-14 03:30:33,355 p=10630 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 03:30:33,355 p=10630 u=vagrant n=ansible | 192.168.56.4               : ok=6    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 03:31:25,385 p=11056 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 03:31:25,404 p=11056 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 03:31:27,052 p=11056 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:31:27,073 p=11056 u=vagrant n=ansible | TASK [include_role : TP_INI] *******************************************************************************************************************************************************
+2024-11-14 03:31:27,145 p=11056 u=vagrant n=ansible | TASK [TP_INI : Rol: TP_INI - Grupo: {{ Linux_is_good }}] ***************************************************************************************************************************
+2024-11-14 03:31:27,182 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: TP_INI"
+}
+2024-11-14 03:31:27,192 p=11056 u=vagrant n=ansible | TASK [TP_INI : Crear directorios en /tmp/Grupo/] ***********************************************************************************************************************************
+2024-11-14 03:31:27,850 p=11056 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:31:27,865 p=11056 u=vagrant n=ansible | TASK [TP_INI : Agrego archivo desde template] **************************************************************************************************************************************
+2024-11-14 03:31:29,294 p=11056 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 03:31:29,313 p=11056 u=vagrant n=ansible | TASK [include_role : Alta_Usuarios_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 03:31:29,364 p=11056 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Rol: Alta_Usuarios - Grupo: Linux_is_good] *****************************************************************************************************
+2024-11-14 03:31:29,396 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Alta_Usuarios"
+}
+2024-11-14 03:31:29,417 p=11056 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Creo grupos principales] ***********************************************************************************************************************
+2024-11-14 03:31:30,080 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R1)
+2024-11-14 03:31:30,521 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R2)
+2024-11-14 03:31:31,050 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R3)
+2024-11-14 03:31:31,508 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R4)
+2024-11-14 03:31:31,953 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R5)
+2024-11-14 03:31:32,381 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R6)
+2024-11-14 03:31:32,849 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item=Linux_is_good)
+2024-11-14 03:31:32,867 p=11056 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Alta y/o Actualización del usuario] ************************************************************************************************************
+2024-11-14 03:31:33,899 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R1_Matias', 'PRIMARY_GROUP': 'G_R1', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 03:31:34,449 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R2_Arquitectura', 'PRIMARY_GROUP': 'G_R2', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 03:31:34,989 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R3_Automatizacion_1', 'PRIMARY_GROUP': 'G_R3', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 03:31:35,542 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R4_Automatizacion_2', 'PRIMARY_GROUP': 'G_R4', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 03:31:36,070 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R5_Microservicios', 'PRIMARY_GROUP': 'G_R5', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 03:31:36,623 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R6_Testing', 'PRIMARY_GROUP': 'G_R6', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 03:31:36,638 p=11056 u=vagrant n=ansible | TASK [include_role : Instala-tools_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 03:31:36,712 p=11056 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Rol: Instala-tools_Linux_is_good] **************************************************************************************************************
+2024-11-14 03:31:36,737 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol Linux_is_good"
+}
+2024-11-14 03:31:36,752 p=11056 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Instala herramientas] **************************************************************************************************************************
+2024-11-14 03:31:39,391 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=htop)
+2024-11-14 03:31:41,661 p=11056 u=vagrant n=ansible | ok: [192.168.56.4] => (item=tmux)
+2024-11-14 03:31:56,687 p=11056 u=vagrant n=ansible | changed: [192.168.56.4] => (item=speedtest-cli)
+2024-11-14 03:31:56,698 p=11056 u=vagrant n=ansible | TASK [include_role : Sudoers_Linux_is_good] ****************************************************************************************************************************************
+2024-11-14 03:31:56,776 p=11056 u=vagrant n=ansible | TASK [Sudoers_Linux_is_good : add NOPASSWD in sudoers for group Linux_is_good] *****************************************************************************************************
+2024-11-14 03:31:57,376 p=11056 u=vagrant n=ansible | fatal: [192.168.56.4]: FAILED! => {"changed": false, "msg": "Destination /etc/sudoers.d/desa does not exist !", "rc": 257}
+2024-11-14 03:31:57,379 p=11056 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 03:31:57,380 p=11056 u=vagrant n=ansible | 192.168.56.4               : ok=9    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 04:08:19,740 p=11996 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 04:08:19,761 p=11996 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 04:08:23,341 p=11996 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 04:08:23,368 p=11996 u=vagrant n=ansible | TASK [include_role : TP_INI] *******************************************************************************************************************************************************
+2024-11-14 04:08:23,453 p=11996 u=vagrant n=ansible | TASK [TP_INI : Rol: TP_INI - Grupo: {{ Linux_is_good }}] ***************************************************************************************************************************
+2024-11-14 04:08:23,487 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: TP_INI"
+}
+2024-11-14 04:08:23,504 p=11996 u=vagrant n=ansible | TASK [TP_INI : Crear directorios en /tmp/Grupo/] ***********************************************************************************************************************************
+2024-11-14 04:08:24,312 p=11996 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 04:08:24,333 p=11996 u=vagrant n=ansible | TASK [TP_INI : Agrego archivo desde template] **************************************************************************************************************************************
+2024-11-14 04:08:25,745 p=11996 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 04:08:25,765 p=11996 u=vagrant n=ansible | TASK [include_role : Alta_Usuarios_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 04:08:25,836 p=11996 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Rol: Alta_Usuarios - Grupo: Linux_is_good] *****************************************************************************************************
+2024-11-14 04:08:25,867 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Alta_Usuarios"
+}
+2024-11-14 04:08:25,882 p=11996 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Creo grupos principales] ***********************************************************************************************************************
+2024-11-14 04:08:26,554 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R1)
+2024-11-14 04:08:27,064 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R2)
+2024-11-14 04:08:27,547 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R3)
+2024-11-14 04:08:28,063 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R4)
+2024-11-14 04:08:28,569 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R5)
+2024-11-14 04:08:29,083 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R6)
+2024-11-14 04:08:29,587 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=Linux_is_good)
+2024-11-14 04:08:29,608 p=11996 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Alta y/o Actualización del usuario] ************************************************************************************************************
+2024-11-14 04:08:30,636 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R1_Matias', 'PRIMARY_GROUP': 'G_R1', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:08:31,218 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R2_Arquitectura', 'PRIMARY_GROUP': 'G_R2', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:08:31,806 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R3_Automatizacion_1', 'PRIMARY_GROUP': 'G_R3', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:08:32,413 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R4_Automatizacion_2', 'PRIMARY_GROUP': 'G_R4', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:08:33,003 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R5_Microservicios', 'PRIMARY_GROUP': 'G_R5', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:08:33,588 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R6_Testing', 'PRIMARY_GROUP': 'G_R6', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:08:33,601 p=11996 u=vagrant n=ansible | TASK [include_role : Instala-tools_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 04:08:33,661 p=11996 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Rol: Instala-tools_Linux_is_good] **************************************************************************************************************
+2024-11-14 04:08:33,692 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol Linux_is_good"
+}
+2024-11-14 04:08:33,709 p=11996 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Instala herramientas] **************************************************************************************************************************
+2024-11-14 04:08:36,472 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=htop)
+2024-11-14 04:08:38,846 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=tmux)
+2024-11-14 04:08:41,279 p=11996 u=vagrant n=ansible | ok: [192.168.56.4] => (item=speedtest-cli)
+2024-11-14 04:08:41,296 p=11996 u=vagrant n=ansible | TASK [include_role : Sudoers_Linux_is_good] ****************************************************************************************************************************************
+2024-11-14 04:08:41,364 p=11996 u=vagrant n=ansible | TASK [Sudoers_Linux_is_good : add NOPASSWD in sudoers for group Linux_is_good] *****************************************************************************************************
+2024-11-14 04:08:42,136 p=11996 u=vagrant n=ansible | fatal: [192.168.56.4]: FAILED! => {"changed": false, "msg": "Path /etc/sudoers.d is a directory !", "rc": 256}
+2024-11-14 04:08:42,144 p=11996 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 04:08:42,145 p=11996 u=vagrant n=ansible | 192.168.56.4               : ok=9    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 04:19:16,381 p=12785 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 04:19:16,401 p=12785 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 04:19:19,501 p=12785 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 04:19:19,524 p=12785 u=vagrant n=ansible | TASK [include_role : TP_INI] *******************************************************************************************************************************************************
+2024-11-14 04:19:19,591 p=12785 u=vagrant n=ansible | TASK [TP_INI : Rol: TP_INI - Grupo: {{ Linux_is_good }}] ***************************************************************************************************************************
+2024-11-14 04:19:19,623 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: TP_INI"
+}
+2024-11-14 04:19:19,636 p=12785 u=vagrant n=ansible | TASK [TP_INI : Crear directorios en /tmp/Grupo/] ***********************************************************************************************************************************
+2024-11-14 04:19:20,416 p=12785 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 04:19:20,429 p=12785 u=vagrant n=ansible | TASK [TP_INI : Agrego archivo desde template] **************************************************************************************************************************************
+2024-11-14 04:19:22,156 p=12785 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 04:19:22,178 p=12785 u=vagrant n=ansible | TASK [include_role : Alta_Usuarios_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 04:19:22,311 p=12785 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Rol: Alta_Usuarios - Grupo: Linux_is_good] *****************************************************************************************************
+2024-11-14 04:19:22,343 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Alta_Usuarios"
+}
+2024-11-14 04:19:22,362 p=12785 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Creo grupos principales] ***********************************************************************************************************************
+2024-11-14 04:19:23,107 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R1)
+2024-11-14 04:19:23,662 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R2)
+2024-11-14 04:19:24,235 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R3)
+2024-11-14 04:19:24,815 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R4)
+2024-11-14 04:19:25,355 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R5)
+2024-11-14 04:19:25,903 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=G_R6)
+2024-11-14 04:19:26,447 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=Linux_is_good)
+2024-11-14 04:19:26,467 p=12785 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Alta y/o Actualización del usuario] ************************************************************************************************************
+2024-11-14 04:19:27,548 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R1_Matias', 'PRIMARY_GROUP': 'G_R1', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:19:28,182 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R2_Arquitectura', 'PRIMARY_GROUP': 'G_R2', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:19:28,807 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R3_Automatizacion_1', 'PRIMARY_GROUP': 'G_R3', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:19:29,428 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R4_Automatizacion_2', 'PRIMARY_GROUP': 'G_R4', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:19:30,021 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R5_Microservicios', 'PRIMARY_GROUP': 'G_R5', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:19:30,617 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'USERNAME': 'R6_Testing', 'PRIMARY_GROUP': 'G_R6', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-14 04:19:30,641 p=12785 u=vagrant n=ansible | TASK [include_role : Instala-tools_Linux_is_good] **********************************************************************************************************************************
+2024-11-14 04:19:30,693 p=12785 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Rol: Instala-tools_Linux_is_good] **************************************************************************************************************
+2024-11-14 04:19:30,719 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol Linux_is_good"
+}
+2024-11-14 04:19:30,740 p=12785 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Instala herramientas] **************************************************************************************************************************
+2024-11-14 04:19:33,693 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=htop)
+2024-11-14 04:19:36,355 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=tmux)
+2024-11-14 04:19:38,891 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => (item=speedtest-cli)
+2024-11-14 04:19:38,909 p=12785 u=vagrant n=ansible | TASK [include_role : Sudoers_Linux_is_good] ****************************************************************************************************************************************
+2024-11-14 04:19:38,974 p=12785 u=vagrant n=ansible | TASK [Sudoers_Linux_is_good : add NOPASSWD in sudoers for group Linux_is_good] *****************************************************************************************************
+2024-11-14 04:19:39,776 p=12785 u=vagrant n=ansible | changed: [192.168.56.4]
+2024-11-14 04:19:39,794 p=12785 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good] *******************************************************************************************************************************************
+2024-11-14 04:19:39,827 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Gestion_particiones_Linux_is_good"
+}
+2024-11-14 04:19:39,842 p=12785 u=vagrant n=ansible | TASK [TP_INI] **********************************************************************************************************************************************************************
+2024-11-14 04:19:39,871 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol TP_INI"
+}
+2024-11-14 04:19:39,892 p=12785 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good] *************************************************************************************************************************************************
+2024-11-14 04:19:39,922 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Alta_Usuarios_Linux_is_good"
+}
+2024-11-14 04:19:39,944 p=12785 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good] *************************************************************************************************************************************************
+2024-11-14 04:19:39,983 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Instala-tools_Linux_is_good"
+}
+2024-11-14 04:19:40,000 p=12785 u=vagrant n=ansible | TASK [Sudoers_Linux_is_good] *******************************************************************************************************************************************************
+2024-11-14 04:19:40,038 p=12785 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Sudoers_Linux_is_good"
+}
+2024-11-14 04:19:40,060 p=12785 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 04:19:40,063 p=12785 u=vagrant n=ansible | 192.168.56.4               : ok=15   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

@@ -9,8 +9,8 @@
     - vars/main.yml
 
   tasks:
-    - include_role:
-        name: Gestion_particiones_Linux_is_good
+    #- include_role:
+      #name: Gestion_particiones_Linux_is_good
     
     - include_role:
         name: TP_INI
