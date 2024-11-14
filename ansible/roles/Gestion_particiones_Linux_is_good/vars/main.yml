@@ -14,7 +14,7 @@
     - device: /dev/sdd
       number: 1
       flags: [ lvm ]
-      part_start: 200MG  
+      part_start: 200MB  
       part_end: 3GB  # Fin de la partición 2 (1GB adicional)
     #- device: /dev/sdc
     #number: 1
@@ -30,7 +30,7 @@
       pvs: /dev/sdc1  # Las particiones físicas que forman el VG
       pesize: 4MB  # Tamaño de la extensión física (PE) 
     - vg: vg_datos  
-      pvs: /dev/sdc2  
+      pvs: /dev/sdd1  
       pesize: 4MB  
     #- vg: vg_temp  
       #pvs: /dev/sdc3
@@ -40,7 +40,7 @@
   lista_volumenes_logicos:
     - vg_name: vg_datos
       lv_name: lv_docker
-      lv_size: 100%FREE
+      lv_size: 50%FREE
     - vg_name: vg_datos
       lv_name: lv_workareas
       lv_size: 100%FREE

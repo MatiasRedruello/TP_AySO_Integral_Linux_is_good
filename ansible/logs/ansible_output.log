@@ -1416,3 +1416,85 @@ change.
 2024-11-13 14:18:21,926 p=10016 u=vagrant n=ansible | fatal: [192.168.56.4]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '192.168.56.4' (ED25519) to the list of known hosts.\r\nvagrant@192.168.56.4: Permission denied (publickey,password).", "unreachable": true}
 2024-11-13 14:18:21,929 p=10016 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
 2024-11-13 14:18:21,930 p=10016 u=vagrant n=ansible | 192.168.56.4               : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-11-14 02:26:07,283 p=9683 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 02:26:07,306 p=9683 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 02:26:10,779 p=9683 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:26:10,804 p=9683 u=vagrant n=ansible | TASK [include_role : Gestion_particiones_Linux_is_good] ****************************************************************************************************************************
+2024-11-14 02:26:11,051 p=9683 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Gestion_particiones_Linux_is_good] *******************************************************************************************************
+2024-11-14 02:26:11,075 p=9683 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+}
+2024-11-14 02:26:11,085 p=9683 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Crear puntos de montaje] *****************************************************************************************************************
+2024-11-14 02:26:11,828 p=9683 u=vagrant n=ansible | changed: [192.168.56.4] => (item=/var/lib/docker/)
+2024-11-14 02:26:12,315 p=9683 u=vagrant n=ansible | changed: [192.168.56.4] => (item=/work/)
+2024-11-14 02:26:12,333 p=9683 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : create partition] ************************************************************************************************************************
+2024-11-14 02:26:13,806 p=9683 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'device': '/dev/sdc', 'number': 1, 'flags': ['lvm'], 'part_start': '0GB', 'part_end': '3GB'})
+2024-11-14 02:26:14,253 p=9683 u=vagrant n=ansible | failed: [192.168.56.4] (item={'device': '/dev/sdd', 'number': 1, 'flags': ['lvm'], 'part_start': '200MG', 'part_end': '3GB'}) => {"ansible_loop_var": "item", "changed": false, "err": [200.0, "MG"], "item": {"device": "/dev/sdd", "flags": ["lvm"], "number": 1, "part_end": "3GB", "part_start": "200MG"}, "msg": "The argument 'part_start' doesn't respect required format.The size unit is case sensitive."}
+2024-11-14 02:26:14,257 p=9683 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 02:26:14,257 p=9683 u=vagrant n=ansible | 192.168.56.4               : ok=3    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 02:27:17,349 p=10037 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 02:27:17,368 p=10037 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 02:27:20,366 p=10037 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:27:20,388 p=10037 u=vagrant n=ansible | TASK [include_role : Gestion_particiones_Linux_is_good] ****************************************************************************************************************************
+2024-11-14 02:27:20,469 p=10037 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Gestion_particiones_Linux_is_good] *******************************************************************************************************
+2024-11-14 02:27:20,496 p=10037 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+}
+2024-11-14 02:27:20,508 p=10037 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Crear puntos de montaje] *****************************************************************************************************************
+2024-11-14 02:27:21,399 p=10037 u=vagrant n=ansible | ok: [192.168.56.4] => (item=/var/lib/docker/)
+2024-11-14 02:27:21,847 p=10037 u=vagrant n=ansible | ok: [192.168.56.4] => (item=/work/)
+2024-11-14 02:27:21,864 p=10037 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : create partition] ************************************************************************************************************************
+2024-11-14 02:27:22,862 p=10037 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'device': '/dev/sdc', 'number': 1, 'flags': ['lvm'], 'part_start': '0GB', 'part_end': '3GB'})
+2024-11-14 02:27:24,074 p=10037 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'device': '/dev/sdd', 'number': 1, 'flags': ['lvm'], 'part_start': '200MB', 'part_end': '3GB'})
+2024-11-14 02:27:24,112 p=10037 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Install lvm2 dependency] *****************************************************************************************************************
+2024-11-14 02:27:27,497 p=10037 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:27:27,515 p=10037 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating volume group] **********************************************************************************************************
+2024-11-14 02:27:28,819 p=10037 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg': 'vg_datos', 'pvs': '/dev/sdc1', 'pesize': '4MB'})
+2024-11-14 02:27:29,278 p=10037 u=vagrant n=ansible | failed: [192.168.56.4] (item={'vg': 'vg_datos', 'pvs': '/dev/sdc2', 'pesize': '4MB'}) => {"ansible_loop_var": "item", "changed": false, "item": {"pesize": "4MB", "pvs": "/dev/sdc2", "vg": "vg_datos"}, "msg": "Device /dev/sdc2 not found."}
+2024-11-14 02:27:29,287 p=10037 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 02:27:29,289 p=10037 u=vagrant n=ansible | 192.168.56.4               : ok=5    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 02:28:39,739 p=10521 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 02:28:39,752 p=10521 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 02:28:42,630 p=10521 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:28:42,647 p=10521 u=vagrant n=ansible | TASK [include_role : Gestion_particiones_Linux_is_good] ****************************************************************************************************************************
+2024-11-14 02:28:42,723 p=10521 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Gestion_particiones_Linux_is_good] *******************************************************************************************************
+2024-11-14 02:28:42,743 p=10521 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+}
+2024-11-14 02:28:42,755 p=10521 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Crear puntos de montaje] *****************************************************************************************************************
+2024-11-14 02:28:43,484 p=10521 u=vagrant n=ansible | ok: [192.168.56.4] => (item=/var/lib/docker/)
+2024-11-14 02:28:43,905 p=10521 u=vagrant n=ansible | ok: [192.168.56.4] => (item=/work/)
+2024-11-14 02:28:43,921 p=10521 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : create partition] ************************************************************************************************************************
+2024-11-14 02:28:44,727 p=10521 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'device': '/dev/sdc', 'number': 1, 'flags': ['lvm'], 'part_start': '0GB', 'part_end': '3GB'})
+2024-11-14 02:28:45,422 p=10521 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'device': '/dev/sdd', 'number': 1, 'flags': ['lvm'], 'part_start': '200MB', 'part_end': '3GB'})
+2024-11-14 02:28:45,440 p=10521 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Install lvm2 dependency] *****************************************************************************************************************
+2024-11-14 02:28:47,710 p=10521 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:28:47,724 p=10521 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating volume group] **********************************************************************************************************
+2024-11-14 02:28:48,507 p=10521 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'vg': 'vg_datos', 'pvs': '/dev/sdc1', 'pesize': '4MB'})
+2024-11-14 02:28:49,302 p=10521 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg': 'vg_datos', 'pvs': '/dev/sdd1', 'pesize': '4MB'})
+2024-11-14 02:28:49,313 p=10521 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating logical volume] ********************************************************************************************************
+2024-11-14 02:28:50,335 p=10521 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg_name': 'vg_datos', 'lv_name': 'lv_docker', 'lv_size': '100%FREE'})
+2024-11-14 02:28:50,934 p=10521 u=vagrant n=ansible | failed: [192.168.56.4] (item={'vg_name': 'vg_datos', 'lv_name': 'lv_workareas', 'lv_size': '100%FREE'}) => {"ansible_loop_var": "item", "changed": false, "err": "  Calculated size of logical volume is 0 extents. Needs to be larger.\n", "item": {"lv_name": "lv_workareas", "lv_size": "100%FREE", "vg_name": "vg_datos"}, "msg": "Creating logical volume 'lv_workareas' failed", "rc": 5}
+2024-11-14 02:28:50,937 p=10521 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 02:28:50,938 p=10521 u=vagrant n=ansible | 192.168.56.4               : ok=6    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-11-14 02:34:44,718 p=11050 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-14 02:34:44,735 p=11050 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-14 02:34:47,124 p=11050 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:34:47,146 p=11050 u=vagrant n=ansible | TASK [include_role : Gestion_particiones_Linux_is_good] ****************************************************************************************************************************
+2024-11-14 02:34:47,219 p=11050 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Gestion_particiones_Linux_is_good] *******************************************************************************************************
+2024-11-14 02:34:47,235 p=11050 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Gestion_particiones_Linux_is_good"
+}
+2024-11-14 02:34:47,243 p=11050 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Crear puntos de montaje] *****************************************************************************************************************
+2024-11-14 02:34:47,873 p=11050 u=vagrant n=ansible | ok: [192.168.56.4] => (item=/var/lib/docker/)
+2024-11-14 02:34:48,272 p=11050 u=vagrant n=ansible | ok: [192.168.56.4] => (item=/work/)
+2024-11-14 02:34:48,291 p=11050 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : create partition] ************************************************************************************************************************
+2024-11-14 02:34:49,229 p=11050 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'device': '/dev/sdc', 'number': 1, 'flags': ['lvm'], 'part_start': '0GB', 'part_end': '3GB'})
+2024-11-14 02:34:49,856 p=11050 u=vagrant n=ansible | ok: [192.168.56.4] => (item={'device': '/dev/sdd', 'number': 1, 'flags': ['lvm'], 'part_start': '200MB', 'part_end': '3GB'})
+2024-11-14 02:34:49,868 p=11050 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : Install lvm2 dependency] *****************************************************************************************************************
+2024-11-14 02:34:52,139 p=11050 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-14 02:34:52,159 p=11050 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good : task for creating volume group] **********************************************************************************************************
+2024-11-14 02:34:53,179 p=11050 u=vagrant n=ansible | failed: [192.168.56.4] (item={'vg': 'vg_datos', 'pvs': '/dev/sdc1', 'pesize': '4MB'}) => {"ansible_loop_var": "item", "changed": false, "err": "  Physical volume \"/dev/sdd1\" still in use\n", "item": {"pesize": "4MB", "pvs": "/dev/sdc1", "vg": "vg_datos"}, "msg": "Unable to reduce vg_datos by /dev/sdd1.", "rc": 5}
+2024-11-14 02:34:53,787 p=11050 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'vg': 'vg_datos', 'pvs': '/dev/sdd1', 'pesize': '4MB'})
+2024-11-14 02:34:53,796 p=11050 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-14 02:34:53,796 p=11050 u=vagrant n=ansible | 192.168.56.4               : ok=5    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
