@@ -1,0 +1,10 @@
+version: '3'
+  # imagen del lider: matiasred/tp-div_314_grupo_linux_is_good
+
+services:
+    web:
+        image: matiasred/tp-div_314_grupo_linux_is_good
+        ports: 
+            - "8081:80"
+        volumes:
+            - ./web/file:/usr/share/nginx/html/file
