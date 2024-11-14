@@ -48,6 +48,7 @@
     loop: "{{ lista_volumenes_logicos }}"    
 
   - name: "format the filesystem"
+    become: yes
     filesystem:
       fstype: "{{ item.fstype }}"
       dev: "{{ item.lv_dev }}"
