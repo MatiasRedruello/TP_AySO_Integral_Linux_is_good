@@ -55,6 +55,7 @@
     loop: "{{ lista_de_formatos }}" 
 
   - name: "mount the lv on"
+    become: yes
     mount:
       path: "{{ item.path }}"
       src: "{{ item.src }}"
