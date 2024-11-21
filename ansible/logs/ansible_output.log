@@ -1888,3 +1888,70 @@ Or equivalently:
 }
 2024-11-14 04:19:40,060 p=12785 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
 2024-11-14 04:19:40,063 p=12785 u=vagrant n=ansible | 192.168.56.4               : ok=15   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-11-21 03:36:11,995 p=24946 u=vagrant n=ansible | PLAY [testing] *********************************************************************************************************************************************************************
+2024-11-21 03:36:12,045 p=24946 u=vagrant n=ansible | TASK [Gathering Facts] *************************************************************************************************************************************************************
+2024-11-21 03:36:16,630 p=24946 u=vagrant n=ansible | ok: [192.168.56.4]
+2024-11-21 03:36:16,655 p=24946 u=vagrant n=ansible | TASK [include_role : TP_INI] *******************************************************************************************************************************************************
+2024-11-21 03:36:16,836 p=24946 u=vagrant n=ansible | TASK [TP_INI : Rol: TP_INI - Grupo: Linux_is_good] *********************************************************************************************************************************
+2024-11-21 03:36:16,870 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: TP_INI"
+}
+2024-11-21 03:36:16,891 p=24946 u=vagrant n=ansible | TASK [TP_INI : Crear directorios en /tmp/{{ Nombre_Grupo }}/{{ item }}] ************************************************************************************************************
+2024-11-21 03:36:17,506 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=log)
+2024-11-21 03:36:17,935 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=config)
+2024-11-21 03:36:17,956 p=24946 u=vagrant n=ansible | TASK [TP_INI : Agrego archivo desde template] **************************************************************************************************************************************
+2024-11-21 03:36:19,186 p=24946 u=vagrant n=ansible | changed: [192.168.56.4]
+2024-11-21 03:36:19,202 p=24946 u=vagrant n=ansible | TASK [include_role : Alta_Usuarios_Linux_is_good] **********************************************************************************************************************************
+2024-11-21 03:36:19,258 p=24946 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Rol: Alta_Usuarios - Grupo: Linux_is_good] *****************************************************************************************************
+2024-11-21 03:36:19,281 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol: Alta_Usuarios"
+}
+2024-11-21 03:36:19,303 p=24946 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Creo grupos principales] ***********************************************************************************************************************
+2024-11-21 03:36:19,969 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R1)
+2024-11-21 03:36:20,439 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R2)
+2024-11-21 03:36:20,903 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R3)
+2024-11-21 03:36:21,385 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R4)
+2024-11-21 03:36:21,866 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R5)
+2024-11-21 03:36:22,342 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=G_R6)
+2024-11-21 03:36:22,898 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=Linux_is_good)
+2024-11-21 03:36:22,912 p=24946 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good : Alta y/o Actualización del usuario] ************************************************************************************************************
+2024-11-21 03:36:23,997 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R1_Matias', 'PRIMARY_GROUP': 'G_R1', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-21 03:36:24,555 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R2_Arquitectura', 'PRIMARY_GROUP': 'G_R2', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-21 03:36:25,115 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R3_Automatizacion_1', 'PRIMARY_GROUP': 'G_R3', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-21 03:36:25,684 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R4_Automatizacion_2', 'PRIMARY_GROUP': 'G_R4', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-21 03:36:26,242 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R5_Microservicios', 'PRIMARY_GROUP': 'G_R5', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-21 03:36:26,792 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item={'USERNAME': 'R6_Testing', 'PRIMARY_GROUP': 'G_R6', 'SECONDARY_GROUPS': 'Linux_is_good'})
+2024-11-21 03:36:26,810 p=24946 u=vagrant n=ansible | TASK [include_role : Instala-tools_Linux_is_good] **********************************************************************************************************************************
+2024-11-21 03:36:26,865 p=24946 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Rol: Instala-tools_Linux_is_good] **************************************************************************************************************
+2024-11-21 03:36:26,893 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Inicio de tareas dentro del Rol Linux_is_good"
+}
+2024-11-21 03:36:26,906 p=24946 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good : Instala herramientas] **************************************************************************************************************************
+2024-11-21 03:36:29,950 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => (item=htop)
+2024-11-21 03:36:32,222 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => (item=tmux)
+2024-11-21 03:36:47,694 p=24946 u=vagrant n=ansible | changed: [192.168.56.4] => (item=speedtest-cli)
+2024-11-21 03:36:47,711 p=24946 u=vagrant n=ansible | TASK [include_role : Sudoers_Linux_is_good] ****************************************************************************************************************************************
+2024-11-21 03:36:47,760 p=24946 u=vagrant n=ansible | TASK [Sudoers_Linux_is_good : add NOPASSWD in sudoers for group Linux_is_good] *****************************************************************************************************
+2024-11-21 03:36:48,383 p=24946 u=vagrant n=ansible | changed: [192.168.56.4]
+2024-11-21 03:36:48,397 p=24946 u=vagrant n=ansible | TASK [Gestion_particiones_Linux_is_good] *******************************************************************************************************************************************
+2024-11-21 03:36:48,413 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Gestion_particiones_Linux_is_good"
+}
+2024-11-21 03:36:48,425 p=24946 u=vagrant n=ansible | TASK [TP_INI] **********************************************************************************************************************************************************************
+2024-11-21 03:36:48,442 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol TP_INI"
+}
+2024-11-21 03:36:48,450 p=24946 u=vagrant n=ansible | TASK [Alta_Usuarios_Linux_is_good] *************************************************************************************************************************************************
+2024-11-21 03:36:48,466 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Alta_Usuarios_Linux_is_good"
+}
+2024-11-21 03:36:48,475 p=24946 u=vagrant n=ansible | TASK [Instala-tools_Linux_is_good] *************************************************************************************************************************************************
+2024-11-21 03:36:48,491 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Instala-tools_Linux_is_good"
+}
+2024-11-21 03:36:48,501 p=24946 u=vagrant n=ansible | TASK [Sudoers_Linux_is_good] *******************************************************************************************************************************************************
+2024-11-21 03:36:48,517 p=24946 u=vagrant n=ansible | ok: [192.168.56.4] => {
+    "msg": "Despues de la ejecucion del rol Sudoers_Linux_is_good"
+}
+2024-11-21 03:36:48,533 p=24946 u=vagrant n=ansible | PLAY RECAP *************************************************************************************************************************************************************************
+2024-11-21 03:36:48,534 p=24946 u=vagrant n=ansible | 192.168.56.4               : ok=15   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

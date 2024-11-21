@@ -27,8 +27,8 @@ do
 	GRUPO=$(echo  $LINEA |awk -F ',' '{print $2}')
 	DIRECTORIO=$(echo  $LINEA |awk -F ',' '{print $3}')
 	
-	echo "sudo groupadd $GRUPO
-	sudo useradd -m -d $DIRECTORIO -s /bin/bash -g $GRUPO -p "$CLAVE_USUARIO"  $USUARIO"
+	sudo groupadd $GRUPO
+	sudo useradd -m -d $DIRECTORIO -s /bin/bash -g $GRUPO -p "$CLAVE_USUARIO"  $USUARIO
 done
 IFS=$ANT_IFS
 
