@@ -3,11 +3,11 @@
 
 
 Nombre Grupo: {{ Nombre_Grupo }}
-División:314 
+División: {{ numero_division }} 
 Fecha: 11/11/2024
 —-------------------------
-Distribución: Fedora
-Cantidad de Cores: 2
+Distribución: {{ ansible_facts.distribution }}
+Cantidad de Cores: {{ ansible_processor_cores }}
 —-------------------------
 R1: Nombre: Matias  Apellido: Redruello 
 R2: Nombre: R2      Apellido: Arquitectura 

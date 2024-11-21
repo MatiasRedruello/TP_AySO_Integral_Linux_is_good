@@ -1,19 +1,22 @@
 ---
 # tasks file for TP_INI
 
- - name: "Rol: TP_INI - Grupo: {{ Linux_is_good }}"
+ - name: "Rol: TP_INI - Grupo: {{ Nombre_Grupo }}"
    debug:
      msg: "Inicio de tareas dentro del Rol: TP_INI"
 
- - name: "Crear directorios en /tmp/Grupo/"
+ - name: "Crear directorios en /tmp/{{ Nombre_Grupo }}/{{ item }}"
    file:
-     path: "/tmp/Grupo/"
+     path: "/tmp/{{ Nombre_Grupo }}/{{ item }}"
      state: directory
      owner: vagrant
      group: vagrant
      mode: '0775'
+   with_items:
+     - "log"
+     - "config"
 
  - name: "Agrego archivo desde template"
    template:
      src: template_01.j2
-     dest: /tmp/Grupo/datos.txt
+     dest: /tmp/{{ Nombre_Grupo }}/datos.txt

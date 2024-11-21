@@ -17,6 +17,7 @@ ANT_IFS=$IFS
 IFS=$'\n'
 
 #---- Dentro del bucle ----#
+# -v busca lo que no coincide con x cosa, en  este caso con el  #
 for LINEA in $(cat "$LISTA" | grep -v ^#)
 do
   # Extraer dominio y URL de cada línea
